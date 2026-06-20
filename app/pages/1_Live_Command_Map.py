@@ -2,7 +2,7 @@ import streamlit as st
 import pydeck as pdk
 import pandas as pd
 import numpy as np
-from datetime import datetime, timedelta
+from datetime import datetime
 import os
 import joblib
 import requests
@@ -64,7 +64,7 @@ def geocode_location(query):
             if response_fallback:
                 return float(response_fallback[0]['lat']), float(response_fallback[0]['lon'])
                 
-    except Exception as e:
+    except Exception:
         pass
     return None, None
 
@@ -251,7 +251,7 @@ if sim_btn:
         df_rings = pd.DataFrame([
             {"lat": v_lat, "lon": v_lon, "rad": base_radius * 0.4, "html_text": "<b>⚠️ Inner Core</b><br/>Gridlock certainty > 90%"},
             {"lat": v_lat, "lon": v_lon, "rad": base_radius * 0.7, "html_text": "<b>⚠️ Spillover Zone</b><br/>Heavy arterial slowing"},
-            {"lat": v_lat, "lon": v_lon, "rad": base_radius * 1.0, "html_text": f"<b>⚠️ Max Impact Radius</b><br/>Predicted spread boundary"}
+            {"lat": v_lat, "lon": v_lon, "rad": base_radius * 1.0, "html_text": "<b>⚠️ Max Impact Radius</b><br/>Predicted spread boundary"}
         ])
         layers.append(pdk.Layer(
             "ScatterplotLayer", data=df_rings, get_position="[lon, lat]", get_radius="rad",
