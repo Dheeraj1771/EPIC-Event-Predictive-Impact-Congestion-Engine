@@ -216,3 +216,19 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Python environment caches
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Model storage placeholders (we will pull these explicitly)
+*.pkl
+*.joblib
